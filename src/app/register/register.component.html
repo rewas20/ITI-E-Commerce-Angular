@@ -1,0 +1,75 @@
+<div class="container">
+    <form class="mx-auto" style="width: 80%;" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="exampleInputName1" class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="name" id="exampleInputName1">
+            <div id="nameHelp"
+                *ngIf="
+                registerForm.controls['name'].touched && 
+                registerForm.controls['name'].invalid
+                "
+                class="form-text text-danger" >
+                <small *ngIf="registerForm.controls['name'].errors?.['required']">Name is required</small>
+            </div>
+        </div>
+       <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" formControlName="emailAddress" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp"
+                *ngIf="
+                registerForm.controls['emailAddress'].touched && 
+                registerForm.controls['emailAddress'].invalid
+                "
+                class="form-text text-danger" >
+                <small *ngIf="registerForm.controls['emailAddress'].errors?.['required']">This field is required</small>
+                <small *ngIf="registerForm.controls['emailAddress'].errors?.['email']">Invalid email</small>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="userNameInputEmail1" class="form-label">User Name</label>
+            <input type="text" class="form-control" formControlName="userName" id="exampleInputuserName1" aria-describedby="userNameHelp">
+            <div id="emailHelp"
+                *ngIf="
+                registerForm.controls['userName'].touched && 
+                registerForm.controls['userName'].invalid
+                "
+                class="form-text text-danger" >
+                <small *ngIf="registerForm.controls['userName'].errors?.['required']">User Name is required</small>
+                <small *ngIf="registerForm.controls['userName'].errors?.['pattern']">Make sure userName contains no spaces</small>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="text" class="form-control" formControlName="password" id="exampleInputPassword1">
+            <div id="emailHelp"
+                *ngIf="
+                registerForm.controls['password'].touched && 
+                registerForm.controls['password'].invalid
+                "
+                class="form-text text-danger" >
+                <small *ngIf="registerForm.controls['password'].errors?.['required']">This field is required</small>
+                <small *ngIf="registerForm.controls['password'].errors?.['minlength']">Password length not less than 8 characters </small>
+                <small *ngIf="!registerForm.controls['password'].errors?.['minlength']&&registerForm.controls['password'].errors?.['pattern']?.requiredPattern=='^.*[^\\w,. ]+.*$'">Contains at least one special character [ example : *@%$# ]</small>
+                <small *ngIf="!registerForm.controls['password'].errors?.['minlength']&&registerForm.controls['password'].errors?.['pattern']?.requiredPattern=='^.*\\d+.*$'">Contains at least one digit</small>
+                <small *ngIf="!registerForm.controls['password'].errors?.['minlength']&&registerForm.controls['password'].errors?.['pattern']?.requiredPattern=='^.*[A-Z]+.*$'">Contains at least one uppercase</small>
+                <small *ngIf="!registerForm.controls['password'].errors?.['minlength']&&registerForm.controls['password'].errors?.['pattern']?.requiredPattern=='^.*[a-z]+.*$'">Contains at least one lowercase</small>
+                <br>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputConfirmPassword1" class="form-label">Password</label>
+            <input type="text" class="form-control" formControlName="confirmPassword" id="exampleInputConfirmPassword1">
+            <div id="emailHelp"
+                *ngIf="
+                registerForm.controls['confirmPassword'].touched && 
+                registerForm.controls['confirmPassword'].invalid
+                "
+                class="form-text text-danger" >
+                <small *ngIf="registerForm.controls['confirmPassword'].errors?.['required']">This field is required</small>
+                <!-- <small *ngIf="registerForm.controls['confirmPassword'].errors?.['matching_password']">Doesn't matche previous password?</small> -->
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <p class="py-4 text-center">Already have account! <a (click)="registerPage()" style="cursor: pointer;" class="link-offset-2">Login</a></p>
+</div>

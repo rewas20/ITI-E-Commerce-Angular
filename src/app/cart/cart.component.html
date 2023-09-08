@@ -1,0 +1,17 @@
+<div class="container">
+    <h1 *ngIf="totalPrice!=0">Total Price of Items: ${{totalPrice}}</h1>
+    <br><br>
+    <div class="row jusitify-content-center align-items-center flex-wrap w-100 m-auto">
+        <div *ngFor="let cartItem of cart" class="card col-sm-12 col-md-3 mb-3 me-3 p-0 d-flex jusitify-content-between flex-column" style="overflow: hidden;width: 300px;">
+            <img [src]="cartItem.item.thumbnail" class="img-fluid" style="width: 100%;height: 200px;" alt="">
+            <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                <h5 class="card-title text-truncate" style="width: 100%;">{{cartItem.item.title}}</h5>
+                <p class="card-text p-0 m-0 text-wrap text-truncate" style="max-height: 50px;">{{cartItem.item.description}}</p>
+                <p class="card-text py-2 fw-bold mb-0">${{cartItem.item.price-(cartItem.item.price*(cartItem.item.discountPercentage/100))}}<sub class="text-decoration-line-through fs-6 fw-normal text-danger"> ${{cartItem.item.price}}</sub></p>
+                <a (click)="redirectToDetails(cartItem.item.id)" class="btn btn-primary mb-3" style="font-size: 16px;">Show Details</a>
+                <a class="btn btn-danger" style="font-size: 16px;" (click)="removeFromCart(cartItem.item)">Remove From Cart</a>
+               
+            </div>
+        </div>
+    </div>
+</div>

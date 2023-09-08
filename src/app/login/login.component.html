@@ -1,0 +1,31 @@
+<div class="container">
+    <form class="mx-auto" style="width: 300px;" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" formControlName="emailAddress" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp"
+                *ngIf="
+                loginForm.controls['emailAddress'].touched && 
+                loginForm.controls['emailAddress'].invalid
+                "
+                class="form-text text-danger" >
+                <small *ngIf="loginForm.controls['emailAddress'].errors?.['required']">This field is required</small>
+                <small *ngIf="loginForm.controls['emailAddress'].errors?.['email']">Invalid email</small>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1">
+            <div id="emailHelp"
+                *ngIf="
+                loginForm.controls['password'].touched && 
+                loginForm.controls['password'].invalid
+                "
+                class="form-text text-danger" >
+                <small *ngIf="loginForm.controls['password'].errors?.['required']">This field is required</small>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid" >Submit</button>
+    </form>
+    <p class="py-4 text-center">Don't have account ? <a (click)="registerPage()" style="cursor: pointer;" class="link-offset-2">Register</a></p>
+</div>

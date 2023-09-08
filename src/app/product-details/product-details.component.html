@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="d-flex flex-row align-items-center">
+        <a routerLink="" class="link-underline-light "><h5>Products</h5> </a>
+        <span class="px-2">/</span>
+        <h5 class="text-capitalize" *ngIf="!loaderDetails&&loaderCart">{{product.category}}</h5>
+    </div>
+    <h5 class="py-3" *ngIf="!loaderDetails&&loaderCart">Title: {{product.title}}</h5>
+    <div class="card mw-100 overflow-hidden">
+        <img [src]="product.thumbnail" class="img-fluid" *ngIf="!loaderDetails&&loaderCart" alt="">
+        <div class="card-body d-flex justify-content-between align-items-start flex-column">
+            <h3 class="card-title text-primary" *ngIf="!loaderDetails&&loaderCart">{{product.brand}}</h3>
+            <p class="card-subtitle fw-bold fs-3 " *ngIf="!loaderDetails&&loaderCart"><span class="text-secondary " >Price:</span> ${{product.price-(product.price*(product.discountPercentage/100))}}<sub class="text-decoration-line-through fs-6 fw-normal text-danger"> ${{product.price}}</sub></p>
+            <p class="card-text text-wrap fs-3"  *ngIf="!loaderDetails&&loaderCart">{{product.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item fw-bold fs-2">Stoke:
+                 <span [ngClass]="{'text-danger':product.stock ==0}" *ngIf="!loaderDetails&&loaderCart">{{product.stock==0?"no items":product.stock}}</span></li>
+            <li class="list-group-item fw-medium fs-4" *ngIf="!loaderDetails&&loaderCart">Rate:  {{product.rating}} / 5 <i class="bi bi-star-fill fs-5"></i></li>
+            <li class="list-group-item">    
+                <div *ngIf="isAdd; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                    <a class="btn btn-danger" style="font-size: 16px;" (click)="removeFromCart()">Remove From Cart</a>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <a class="btn btn-secondary" style="font-size: 16px;" (click)="addToCart()">Add to Cart</a>
+                </ng-template>
+            </li>
+          </ul>
+    </div>
+</div>

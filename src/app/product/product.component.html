@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="row jusitify-content-center align-items-center flex-wrap w-100 m-auto">
+        <div *ngFor="let product of listProduct" class="card col-sm-12 col-md-3 mb-3 me-3 p-0 d-flex jusitify-content-between flex-column" style="overflow: hidden;width: 300px;">
+            <app-product-card [product]="product" [cart]="cart" (addCart)="addToCart($event)" (removeCart)="removeFromCart($event)"></app-product-card>
+        </div>
+    </div>
+</div>
